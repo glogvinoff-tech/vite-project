@@ -32,7 +32,7 @@
 # Установка и запуск
 ```sh
 # Клонирование репозитория
-git clone <repository-url>
+git clone https://github.com/glogvinoff-tech/vite-project.git
 cd vite-project
 
 # Установка зависимостей
