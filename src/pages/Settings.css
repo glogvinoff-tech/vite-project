@@ -1,0 +1,139 @@
+.settings-page {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.settings-sections {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.settings-section {
+  background: white;
+  border-radius: 16px;
+  padding: 25px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.settings-section h2 {
+  margin: 0 0 20px 0;
+  color: #333;
+  font-size: 1.3em;
+  border-bottom: 2px solid #f0f0f0;
+  padding-bottom: 10px;
+}
+
+.setting-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 0;
+  border-bottom: 1px solid #f8f9fa;
+}
+
+.setting-item:last-child {
+  border-bottom: none;
+}
+
+.setting-item label {
+  font-weight: 600;
+  color: #333;
+}
+
+.setting-item select {
+  padding: 8px 12px;
+  border: 2px solid #e8e8e8;
+  border-radius: 8px;
+  background: white;
+  font-size: 14px;
+  min-width: 150px;
+}
+
+.setting-item.toggle label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  font-weight: normal;
+}
+
+.setting-item input[type="checkbox"] {
+  display: none;
+}
+
+.toggle-slider {
+  width: 50px;
+  height: 24px;
+  background-color: #ccc;
+  border-radius: 12px;
+  position: relative;
+  transition: background-color 0.3s ease;
+}
+
+.toggle-slider::before {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: white;
+  border-radius: 50%;
+  top: 2px;
+  left: 2px;
+  transition: transform 0.3s ease;
+}
+
+.setting-item input[type="checkbox"]:checked + .toggle-slider {
+  background-color: #667eea;
+}
+
+.setting-item input[type="checkbox"]:checked + .toggle-slider::before {
+  transform: translateX(26px);
+}
+
+.data-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.data-actions .btn {
+  padding: 12px 20px;
+  text-align: center;
+}
+
+.btn-danger {
+  background: linear-gradient(135deg, #f44336, #e57373);
+  color: white;
+}
+
+.btn-danger:hover {
+  background: linear-gradient(135deg, #d32f2f, #ef5350);
+}
+
+.data-info {
+  background: #f8f9fa;
+  padding: 15px;
+  border-radius: 8px;
+}
+
+.data-info ul {
+  margin: 10px 0 0 0;
+  padding-left: 20px;
+}
+
+.data-info li {
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.app-info {
+  color: #666;
+  line-height: 1.6;
+}
+
+.app-info p {
+  margin: 8px 0;
+}

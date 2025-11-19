@@ -1,8 +1,13 @@
 import { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 import TechnologyCard from './components/TechnologyCard';
 import ProgressHeader from './components/ProgressHeader';
 import QuickActions from './components/QuickActions';
+import SearchWithDebounce from './components/SearchWithDebounce';
+import Statistics from './pages/Statistics';
+import Settings from './pages/Settings';
+import Navigation from './components/Navigation.jsx';
 import useTechnologies from './hooks/useTechnologies';
 
 function App() {
@@ -24,6 +29,10 @@ function App() {
     tech.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
     tech.description.toLowerCase().includes(searchQuery.toLowerCase())
   );
+
+  const handleSearch = (query) => {
+    setSearchQuery(query);
+  };
 
   // Функция для получения следующего статуса
   const getNextStatus = (currentStatus) => {
@@ -64,59 +73,83 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>🚀 Трекер изучения технологий</h1>
-        <p>Отслеживайте свой прогресс в изучении React и связанных технологий</p>
-        <div className="app-instruction">
-          💡 <strong>Подсказка:</strong> Двойной клик по карточке меняет статус изучения
-        </div>
-      </header>
+    <Router>
+      <div className="App">
+        <Navigation />
+        
+        <Routes>
+          <Route path="/" element={
+            <>
+              <header className="App-header">
+                <h1>🚀 Трекер изучения технологий</h1>
+                <p>Отслеживайте свой прогресс в изучении React и связанных технологий</p>
+                <div className="app-instruction">
+                  💡 <strong>Подсказка:</strong> Двойной клик по карточке меняет статус изучения
+                </div>
+              </header>
 
-      <ProgressHeader technologies={technologies} />
+              <ProgressHeader technologies={technologies} />
 
-      {/* Поиск по технологиям */}
-      <div className="search-section">
-        <div className="search-box">
-          <input
-            type="text"
-            placeholder="Поиск технологий..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="search-input"
-          />
-          <span className="search-results">
-            Найдено: {filteredTechnologies.length}
-          </span>
-        </div>
-      </div>
+              {/* Поиск по технологиям */}
+              <div className="search-section">
+                <div className="search-box">
+                  <SearchWithDebounce 
+                    onSearch={handleSearch}
+                    placeholder="Поиск технологий..."
+                    delay={400}
+                  />
+                  <span className="search-results">
+                    Найдено: {filteredTechnologies.length}
+                  </span>
+                </div>
+              </div>
 
-      {/* Быстрые действия */}
-      <QuickActions
-        onMarkAllCompleted={markAllCompleted}
-        onResetAll={resetAllStatuses}
-        onImport={handleImport}
-        loading={loading}
-        error={error}
-      />
-      
-      <main className="technologies-container">
-        <h2>Дорожная карта технологий</h2>
-        <div className="technologies-list">
-          {filteredTechnologies.map(tech => (
-            <TechnologyCard
-              key={tech.id}
-              id={tech.id}
-              title={tech.title}
-              description={tech.description}
-              status={tech.status}
-              onDoubleClick={handleTechnologyDoubleClick}
-              isNew={newTechIds.has(tech.id)}
+              {/* Быстрые действия */}
+              <QuickActions
+                onMarkAllCompleted={markAllCompleted}
+                onResetAll={resetAllStatuses}
+                onImport={handleImport}
+                loading={loading}
+                error={error}
+              />
+              
+              <main className="technologies-container">
+                <h2>Дорожная карта технологий</h2>
+                <div className="technologies-list">
+                  {filteredTechnologies.map(tech => (
+                    <TechnologyCard
+                      key={tech.id}
+                      id={tech.id}
+                      title={tech.title}
+                      description={tech.description}
+                      status={tech.status}
+                      onDoubleClick={handleTechnologyDoubleClick}
+                      isNew={newTechIds.has(tech.id)}
+                    />
+                  ))}
+                </div>
+              </main>
+            </>
+          } />
+          
+          <Route path="/statistics" element={
+            <Statistics technologies={technologies} />
+          } />
+          
+          <Route path="/settings" element={
+            <Settings 
+              technologies={technologies}
+              onResetAll={resetAllStatuses}
+              onExportData={() => {}}
+              onImportData={(data) => {
+                // Здесь должна быть логика импорта данных
+                console.log('Importing data:', data);
+              }}
             />
-          ))}
-        </div>
-      </main>
-    </div>
+          } />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 

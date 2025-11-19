@@ -1,0 +1,120 @@
+.statistics-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 25px;
+  margin-bottom: 40px;
+}
+
+.stat-card {
+  background: white;
+  border-radius: 16px;
+  padding: 25px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.progress-circle {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.circle-progress {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.progress-text {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #333;
+}
+
+.status-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.bar-label {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+  font-size: 0.9em;
+}
+
+.bar-container {
+  height: 8px;
+  background-color: #f0f0f0;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.bar-fill {
+  height: 100%;
+  transition: width 0.3s ease;
+}
+
+.category-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.category-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.chart-section {
+  background: white;
+  border-radius: 16px;
+  padding: 25px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.progress-chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 15px;
+  height: 200px;
+  margin-top: 20px;
+}
+
+.chart-bar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  gap: 8px;
+}
+
+.chart-bar-fill {
+  width: 30px;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  border-radius: 4px 4px 0 0;
+  transition: height 0.3s ease;
+  min-height: 10px;
+}
+
+.chart-label {
+  font-size: 0.8em;
+  color: #666;
+}
+
+.chart-value {
+  font-size: 0.9em;
+  font-weight: 600;
+}
