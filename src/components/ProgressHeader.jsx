@@ -1,60 +1,43 @@
 function ProgressHeader({ technologies }) {
-  // Рассчитываем статистику на основе текущих данных
-  const total = technologies.length;
-  const completed = technologies.filter(tech => tech.status === 'completed').length;
-  const inProgress = technologies.filter(tech => tech.status === 'in-progress').length;
-  const notStarted = technologies.filter(tech => tech.status === 'not-started').length;
-  const progressPercentage = total > 0 ? Math.round((completed / total) * 100) : 0;
+  const completedCount = technologies.filter(tech => tech.status === 'completed').length;
+  const inProgressCount = technologies.filter(tech => tech.status === 'in-progress').length;
+  const notStartedCount = technologies.filter(tech => tech.status === 'not-started').length;
+  const totalCount = technologies.length;
+  
+  // Исправляем NaN% - проверяем, что totalCount > 0
+  const progressPercentage = totalCount > 0 ? Math.round((completedCount / totalCount) * 100) : 0;
 
   return (
     <div className="progress-header">
       <div className="stats-container">
         <div className="stat-item">
-          <span className="stat-number">{total}</span>
-          <span className="stat-label">Всего технологий</span>
+          <span className="stat-number completed-count">{completedCount}</span>
+          <span className="stat-label">Завершено</span>
         </div>
         <div className="stat-item">
-          <span className="stat-number completed-count">{completed}</span>
-          <span className="stat-label">Изучено</span>
-        </div>
-        <div className="stat-item">
-          <span className="stat-number in-progress-count">{inProgress}</span>
+          <span className="stat-number in-progress-count">{inProgressCount}</span>
           <span className="stat-label">В процессе</span>
         </div>
         <div className="stat-item">
-          <span className="stat-number not-started-count">{notStarted}</span>
+          <span className="stat-number not-started-count">{notStartedCount}</span>
           <span className="stat-label">Не начато</span>
         </div>
+        <div className="stat-item">
+          <span className="stat-number">{totalCount}</span>
+          <span className="stat-label">Всего</span>
+        </div>
       </div>
-      
+
       <div className="progress-container">
         <div className="progress-info">
-          <span>Общий прогресс: {progressPercentage}%</span>
-          <span>{completed} из {total} технологий изучено</span>
+          <span>Общий прогресс</span>
+          <span>{progressPercentage}%</span>
         </div>
         <div className="progress-bar-container">
           <div 
             className="progress-bar-fill"
             style={{ width: `${progressPercentage}%` }}
-          ></div>
-        </div>
-      </div>
-
-      {/* Визуальная индикация прогресса */}
-      <div className="progress-visual">
-        <div className="progress-segments">
-          {technologies.map(tech => (
-            <div 
-              key={tech.id}
-              className={`progress-segment ${tech.status}`}
-              title={`${tech.title} - ${tech.status}`}
-            ></div>
-          ))}
-        </div>
-        <div className="progress-legend">
-          <span className="legend-item completed">Изучено ({completed})</span>
-          <span className="legend-item in-progress">В процессе ({inProgress})</span>
-          <span className="legend-item not-started">Не начато ({notStarted})</span>
+          />
         </div>
       </div>
     </div>

@@ -1,45 +1,48 @@
-import './TechnologyCard.css';
-
 function TechnologyCard({ id, title, description, status, onDoubleClick }) {
-  const handleDoubleClick = () => {
-    onDoubleClick(id, status);
-  };
-
-  const getStatusIcon = () => {
+  const getStatusColor = () => {
     switch (status) {
-      case 'completed': return '✅';
-      case 'in-progress': return '🔄';
-      case 'not-started': return '⏳';
-      default: return '⏳';
+      case 'completed': return '#4caf50';
+      case 'in-progress': return '#ff9800';
+      case 'not-started': return '#f44336';
+      default: return '#666';
     }
   };
 
   const getStatusText = () => {
     switch (status) {
-      case 'completed': return 'Изучено';
+      case 'completed': return 'Завершено';
       case 'in-progress': return 'В процессе';
       case 'not-started': return 'Не начато';
-      default: return 'Не начато';
+      default: return 'Неизвестно';
     }
   };
 
   return (
     <div 
-      className={`technology-card ${status}`}
-      onDoubleClick={handleDoubleClick}
-      title="Двойной клик для смены статуса"
+      className="technology-card"
+      onDoubleClick={() => onDoubleClick(id, status)}
+      style={{ borderLeft: `6px solid ${getStatusColor()}` }}
     >
       <div className="card-header">
         <h3 className="card-title">{title}</h3>
-        <span className={`status-badge ${status}`}>
-          {getStatusIcon()} {getStatusText()}
+        <span 
+          className="status-badge"
+          style={{ backgroundColor: getStatusColor() }}
+        >
+          {getStatusText()}
         </span>
       </div>
+      
       <p className="card-description">{description}</p>
-      <div className="progress-indicator">
-        <div className={`progress-bar ${status}`}></div>
+      
+      {/* Простое поле ввода под картой */}
+      <div className="card-input">
+        <input
+          type="text"
+          placeholder="Добавьте заметку..."
+          className="note-input"
+        />
       </div>
-      <div className="card-hint">✨ Двойной клик для смены статуса</div>
     </div>
   );
 }
