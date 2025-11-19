@@ -1,16 +1,43 @@
-# React + Vite
+# REACT
+В ходе данной работы мы рассматриваем cовременное React-приложение, построенное на Vite для быстрой разработки.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Содержание
+- [Особенности](#особенности)
+- [Технологии](#технологии)
+- [Начало работы](#начало-работы)
+- [Тестирование](#тестирование)
+- [Deploy и CI/CD](#deploy-и-ci/cd)
+- [Contributing](#contributing)
+- [To do](#to-do)
+- [Команда проекта](#команда-проекта)
 
-Currently, two official plugins are available:
+# Особенности
+- Визуализация прогресса - красивый прогресс и статистика
+- Интерактивные карточки - управление статусом двойным кликом
+- Адаптивный дизайн - работает на всех устройствах
+- Современный UI - градиенты, анимации, плавные переходы
+- Высокая производительность - построено на Vite + React 19
+# Технологии
+- [Node.js](https://nodejs.org/en)
+- [Vite](https://vite.dev/)
+- JavaScript
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+# Начало работы
+Для работы с проектом, нам потребуются следующие вещи:
+Предварительные требования
+- Node.js 20.19.0+ или 22.12.0+
 
-## React Compiler
+- npm 9.0+
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+# Установка и запуск
+```sh
+# Клонирование репозитория
+git clone <repository-url>
+cd vite-project
 
-## Expanding the ESLint configuration
+# Установка зависимостей
+npm install
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+# Запуск development сервера
+npm run dev
+```
